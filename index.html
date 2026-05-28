@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="display: flex; align-items: center; justify-content: center; height: 100dvh;">
-    <div id="board" style="display: flex; gap: 2px; background: rgb(176, 227, 243); width: 500px; height: 350px;"></div>
-    <script src="./index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Science+Gothic:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Touch Typing Trainer</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="name">Тренажер слепой печати</div>
+      <div class="counters">
+        <div class="counter">Время<span>0:00.0</span></div>
+        <div class="counter">Скорость<span>0 зн/мин</span></div>
+        <div class="counter">Ошибки<span>0</span></div>
+        <div class="counter">Точность<span>100%</span></div>
+      </div>
+      <div class="board">
+        В древности библиотеки представляли собой хранилища глиняных табличек и
+        папирусных свитков, доступ к которым имели лишь избранные. Сегодня
+        развитие цифровых технологий и интернета делает информацию доступной
+        каждому человеку на планете всего в несколько кликов.
+      </div>
+      <button class="reset">Перезапуск</button>
+      <script src="./script.js"></script>
+    </div>
+  </body>
 </html>
