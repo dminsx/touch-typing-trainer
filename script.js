@@ -48,7 +48,9 @@ const allowedKeys = new Set([
   "Enter",
 ]);
 
-const board = document.getElementById("board");
+const board = document.querySelector(".board");
+
+board.append(TEXT);
 
 document.addEventListener("keydown", (event) => {
   if (allowedKeys.has(event.key)) {
