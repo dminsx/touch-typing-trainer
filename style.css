@@ -56,12 +56,53 @@ body {
   width: 100%;
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 15px;
   background-color: #161d2e;
+}
+
+.text {
   font-family: "Roboto Mono", monospace;
   font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.25);
-  text-decoration: 80%;
+  color: rgba(255, 255, 255, 0.2);
+  user-select: none;
+}
+
+.text--current {
+  border-radius: 3px;
+  background-color: #364356;
+  animation: flashingLetter 0.5s forwards infinite alternate;
+  padding: 0.3px;
+  white-space: pre-wrap;
+}
+
+.text--correct {
+  color: #ffffff;
+}
+
+.text--wrong {
+  border-radius: 3px;
+  background-color: #ff0000;
+  padding: 0.3px;
+  white-space: pre-wrap;
+  animation: wrongFlashingLetter 0.5s forwards infinite alternate;
+}
+
+@keyframes flashingLetter {
+  from {
+    background-color: #364356;
+  }
+  to {
+    background: none;
+  }
+}
+
+@keyframes wrongFlashingLetter {
+  from {
+    background-color: #ff0000;
+  }
+  to {
+    background: none;
+  }
 }
 
 .reset {
