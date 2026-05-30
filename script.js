@@ -14,27 +14,27 @@ function createSpan() {
   return span;
 }
 
-function getText() {
-  return document.querySelectorAll(".text");
-}
-
 Array.from(TEXT).forEach((letter) => {
   createSpan().append(letter);
 });
 
-getText()[textIndex].classList.add("text--current");
+const text = document.querySelectorAll(".text");
+
+text[textIndex].classList.add("text--current");
 
 document.addEventListener("keydown", (event) => {
   if (invalidKeys.includes(event.key)) {
     return;
   }
 
-  console.log(event.key);
+  if (event.key === " ") {
+    event.preventDefault();
+  }
 
   if (textWrong) {
     if (event.key === "Backspace") {
-      getText()[textIndex].classList.remove("text--wrong");
-      getText()[textIndex].classList.add("text--current");
+      text[textIndex].classList.remove("text--wrong");
+      text[textIndex].classList.add("text--current");
       textWrong = false;
       return;
     }
@@ -42,14 +42,13 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === TEXT[textIndex]) {
-    getText()[textIndex + 1].classList.add("text--current");
-    getText()[textIndex].classList.remove("text--current");
-    getText()[textIndex].classList.add("text--correct");
-
+    text[textIndex + 1].classList.add("text--current");
+    text[textIndex].classList.remove("text--current");
+    text[textIndex].classList.add("text--correct");
     textIndex++;
   } else if (event.key !== "Backspace") {
-    getText()[textIndex].classList.remove("text--current");
-    getText()[textIndex].classList.add("text--wrong");
+    text[textIndex].classList.remove("text--current");
+    text[textIndex].classList.add("text--wrong");
     textWrong = true;
     return;
   }
