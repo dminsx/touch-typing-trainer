@@ -22,13 +22,13 @@
     <div class="main">
       <div class="name">Тренажер слепой печати</div>
       <div class="counters">
-        <div class="counter">Время<span>0:00.0</span></div>
-        <div class="counter">Скорость<span>0 зн/мин</span></div>
-        <div class="counter">Ошибки<span>0</span></div>
-        <div class="counter">Точность<span>100%</span></div>
+        <div class="counter">Время<span id="timer">0:00.0</span></div>
+        <div class="counter">Скорость<span id="speed">0 зн/мин</span></div>
+        <div class="counter">Ошибки<span id="mistakes">0</span></div>
+        <div class="counter">Точность<span id="accuracy">100.00%</span></div>
       </div>
-      <div class="board"></div>
-      <button class="reset">Перезапуск</button>
+      <div class="board board--start">Здесь будет текст. Жми "Начать"</div>
+      <button class="button" id="start">Начать</button>
       <script src="./script.js"></script>
     </div>
   </body>
