@@ -84,34 +84,34 @@ function createSpan() {
 function initTrainer() {
   start.removeEventListener("click", initTrainer);
 
-  board.textContent = "3";
-  setTimeout(() => {
-    board.textContent = "2";
-    setTimeout(() => {
-      board.textContent = "1";
-      setTimeout(() => {
-        board.textContent = "Погнали!";
-        setTimeout(() => {
-          board.textContent = "";
-          board.classList.remove("board--start");
-          board.classList.add("board--text");
+  let startTime = 3;
+  board.textContent = startTime;
+  let timeToStart = setInterval(() => {
+    startTime--;
+    board.textContent = startTime;
 
-          Array.from(TEXT).forEach((letter) => {
-            createSpan().append(letter);
-          });
+    if (startTime === 0) {
+      board.textContent = "Погнали!";
+    } else if (startTime < 0) {
+      clearInterval(timeToStart);
+      board.textContent = "";
+      board.classList.remove("board--start");
+      board.classList.add("board--text");
 
-          text = document.querySelectorAll(".text");
-          text[textIndex].classList.add("text--current");
-          document.addEventListener("keydown", handleKeydown);
+      Array.from(TEXT).forEach((letter) => {
+        createSpan().append(letter);
+      });
 
-          start.textContent = "Закончить";
-          start.id = "end";
-          end = document.getElementById("end");
-          end.addEventListener("click", confirmFinish);
-          startTimer();
-        }, 1000);
-      }, 1000);
-    }, 1000);
+      text = document.querySelectorAll(".text");
+      text[textIndex].classList.add("text--current");
+      document.addEventListener("keydown", handleKeydown);
+
+      start.textContent = "Закончить";
+      start.id = "end";
+      end = document.getElementById("end");
+      end.addEventListener("click", confirmFinish);
+      startTimer();
+    }
   }, 1000);
 }
 

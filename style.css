@@ -41,7 +41,6 @@ body {
   background-color: #364356;
   font-size: 1.3rem;
   font-weight: bold;
-  text-align: left;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -58,20 +57,19 @@ body {
   padding: 15px;
   background-color: #161d2e;
   box-sizing: border-box;
+  line-height: 1.3;
 }
 
 .board--start {
   font-family: "Science Gothic", sans-serif;
   font-size: 4rem;
   font-weight: bold;
-  line-height: 1.3;
   text-align: center;
 }
 
 .board--text {
   font-family: "Roboto Mono", monospace;
   font-size: 1.4rem;
-  line-height: 1.6;
   text-align: left;
 }
 
