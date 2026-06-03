@@ -131,7 +131,11 @@ body {
   cursor: pointer;
 }
 
-.button:hover {
+.button:disabled {
+  opacity: 0.5;
+}
+
+.button:hover:not(:disabled) {
   transform: scale(1.01);
 }
 

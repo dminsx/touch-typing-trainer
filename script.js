@@ -3,21 +3,21 @@ const time = document.getElementById("timer");
 const speed = document.getElementById("speed");
 const mistakes = document.getElementById("mistakes");
 const accuracy = document.getElementById("accuracy");
+const mainButton = document.getElementById("main-button");
 
 const TEXT =
   "В древности библиотеки представляли собой хранилища глиняных табличек и папирусных свитков, доступ к которым имели лишь избранные. Сегодня развитие цифровых технологий и интернета делает информацию доступной каждому человеку на планете всего в несколько кликов.";
 const invalidKeys = ["Shift", "Meta", "Control", "Alt", "GroupNext", "Enter"];
 
+let text;
 let textIndex = 0;
+let mistakesCount = 0;
+let correctLetters = 0;
+let msecValue = 0;
+let isStarted = false;
 let textWrong = false;
 let isEnd = false;
-let text = document.querySelectorAll(".text");
-let start = document.getElementById("start");
-let end = document.getElementById("end");
-let mistakesCount = 0;
 let timerId = null;
-let msecValue = 0;
-let correctLetters = 0;
 
 function timer() {
   msecValue += 100;
@@ -63,17 +63,6 @@ function getResult() {
                 Точность: ${accuracy.textContent}`);
 }
 
-function confirmFinish() {
-  let finish = confirm("Уверены, что хотите закончить?");
-  endTimer();
-  if (finish) {
-    getResult();
-    resetTrainer();
-  } else {
-    startTimer();
-  }
-}
-
 function createSpan() {
   const span = document.createElement("span");
   span.classList.add("text");
@@ -82,8 +71,8 @@ function createSpan() {
 }
 
 function initTrainer() {
-  start.removeEventListener("click", initTrainer);
-
+  mainButton.disabled = true;
+  mainButton.textContent = "Закончить";
   let startTime = 3;
   board.textContent = startTime;
   let timeToStart = setInterval(() => {
@@ -106,40 +95,43 @@ function initTrainer() {
       text[textIndex].classList.add("text--current");
       document.addEventListener("keydown", handleKeydown);
 
-      start.textContent = "Закончить";
-      start.id = "end";
-      end = document.getElementById("end");
-      end.addEventListener("click", confirmFinish);
       startTimer();
+      mainButton.disabled = false;
     }
   }, 1000);
 }
 
 function resetTrainer() {
-  resetTimer();
-
-  end.removeEventListener("click", confirmFinish);
-  end.removeEventListener("click", resetTrainer);
-  end.textContent = "Начать";
-  end.id = "start";
-  start = document.getElementById("start");
-  start.addEventListener("click", initTrainer);
+  mainButton.textContent = "Начать";
 
   board.textContent = 'Здесь будет текст. Жми "Начать"';
   board.classList.remove("board--text");
   board.classList.add("board--start");
 
-  msecValue = 0;
   textIndex = 0;
-  textWrong = false;
-  isEnd = false;
   mistakesCount = 0;
   correctLetters = 0;
+  isStarted = false;
+  textWrong = false;
+  isEnd = false;
+  resetTimer();
+
   speed.textContent = `0 зн/мин`;
   mistakes.textContent = mistakesCount;
   accuracy.textContent = `${getAccuracy()}%`;
 
   document.removeEventListener("keydown", handleKeydown);
+}
+
+function confirmFinish() {
+  let finish = confirm("Уверены, что хотите закончить?");
+  endTimer();
+  if (finish) {
+    getResult();
+    resetTrainer();
+  } else {
+    startTimer();
+  }
 }
 
 function handleKeydown(event) {
@@ -189,4 +181,13 @@ function handleKeydown(event) {
   }
 }
 
-start.addEventListener("click", initTrainer);
+function handleClickMainButton() {
+  if (isStarted) {
+    confirmFinish();
+  } else {
+    initTrainer();
+    isStarted = true;
+  }
+}
+
+mainButton.addEventListener("click", handleClickMainButton);
